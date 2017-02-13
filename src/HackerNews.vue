@@ -3,14 +3,14 @@
         <h2>Hacker News (TOP 10)</h2>
         <ul class="item-list">
             <li v-for="obj in posts">
-                <posthn :item="obj"></posthn>
+                <post :item="obj"></post>
             </li>
         </ul>
     </div>
 </template>
 
 <script type="text/javascript">
-import PostHN from './PostHN.vue';
+import Post from './Post.vue';
 export default {
   name: 'hackernews',
   data: function() {
@@ -37,7 +37,8 @@ export default {
                             title: rdata.title,
                             score: rdata.score,
                             num_comments: rdata.descendants,
-                            url: rdata.url
+                            url: rdata.url,
+                            thumbnail: null
                         });
                     });
                 });
@@ -46,7 +47,7 @@ export default {
       });
   },
   components: {
-    posthn: PostHN
+    post: Post
   }
 };
 </script>

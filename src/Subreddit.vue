@@ -28,8 +28,18 @@ export default {
           return;
         }
         resp.json().then(function(data) {
-            console.log(data);
-            that.posts = data.data.children;
+          var dataAux = data.data.children;
+          that.posts = [];
+          for (var i = 0, n = dataAux.length; i < n; i++) {
+            console.log(dataAux[i]);
+            that.posts.push({
+              title: dataAux[i].data.title,
+              score: dataAux[i].data.score,
+              num_comments: dataAux[i].data.num_comments,
+              url: 'http://reddit.com' + dataAux[i].data.permalink,
+              thumbnail: dataAux[i].data.thumbnail
+            });
+          }
         });
       });
   },
