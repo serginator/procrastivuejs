@@ -1,0 +1,39 @@
+<template>
+    <div class="subreddit">
+        <h2>{{ name | uppercase }}</h2>
+        <ul class="item-list">
+            <li v-for="obj in posts">
+                <post :item="obj"></post>
+            </li>
+        </ul>
+    </div>
+</template>
+
+<script type="text/javascript">
+import Post from './Post.vue';
+export default {
+  name: 'subreddit',
+  props: ['name'],
+  data: function() {
+    return {
+      posts: []
+    }
+  },
+  created: function() {
+    this.$http.get('https://www.reddit.com/r/' + this.name + '/top.json?limit=5')
+      .then(function(resp) {
+        if (typeof resp.data === 'string') {
+          resp.data = JSON.parse(resp.data);
+        }
+        this.posts = resp.data.data.children;
+      });
+  },
+  components: {
+    Post
+  }
+};
+</script>
+
+<style type="text/css">
+
+</style>
