@@ -3,18 +3,21 @@
     <img src="http://vuejs.org/images/logo.png">
     <h1>{{ msg }}</h1>
     <div class="container">
+      <h1>Reddit</h1>
       <subreddit name="aww"></subreddit>
       <subreddit name="space"></subreddit>
-      <subreddit name="gifs"></subreddit>
       <subreddit name="food"></subreddit>
-      <subreddit name="comics"></subreddit>
-      <subreddit name="sports"></subreddit>
+    </div>
+    <div class="container">
+      <h1>HackerNews</h1>
+      <hackernews></hackernews>
     </div>
   </div>
 </template>
 
 <script>
 import Subreddit from './Subreddit.vue';
+import HackerNews from './HackerNews.vue';
 export default {
   name: 'app',
   data () {
@@ -23,7 +26,8 @@ export default {
     }
   },
   components: {
-    Subreddit
+    subreddit: Subreddit,
+    hackernews: HackerNews
   }
 }
 </script>

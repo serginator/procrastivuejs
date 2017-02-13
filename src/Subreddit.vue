@@ -31,14 +31,10 @@ export default {
             console.log(data);
             that.posts = data.data.children;
         });
-        /*if (typeof resp.data === 'string') {
-          resp.data = JSON.parse(resp.data);
-        }
-        this.posts = resp.data.data.children;*/
       });
   },
   components: {
-    Post
+    post: Post
   }
 };
 </script>

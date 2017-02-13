@@ -33,10 +33,7 @@ export default {
         return 'background-image: url(src/img/placeholder.png)';
       }
     }
-  }/*,
-  filters: {
-    truncate: truncate
-  }*/
+  }
 };
 </script>
 

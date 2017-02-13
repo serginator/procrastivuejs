@@ -7,6 +7,10 @@ new Vue({
   render: h => h(App)
 });
 
+Vue.filter('uppercase', function(value) {
+  return value.toUpperCase();
+});
+
 Vue.filter('truncate', function(value) {
   let length = 60;
   if (value.length <= length) {
