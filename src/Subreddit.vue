@@ -20,12 +20,21 @@ export default {
     }
   },
   created: function() {
-    this.$http.get('https://www.reddit.com/r/' + this.name + '/top.json?limit=5')
+    var that = this;
+    fetch('https://www.reddit.com/r/' + this.name + '/top.json?limit=5')
       .then(function(resp) {
-        if (typeof resp.data === 'string') {
+        if (resp.status !== 200) {
+          console.log('Looks like there was a problem. Status Code: ' + resp.status);
+          return;
+        }
+        resp.json().then(function(data) {
+            console.log(data);
+            that.posts = data.data.children;
+        });
+        /*if (typeof resp.data === 'string') {
           resp.data = JSON.parse(resp.data);
         }
-        this.posts = resp.data.data.children;
+        this.posts = resp.data.data.children;*/
       });
   },
   components: {
@@ -35,5 +44,27 @@ export default {
 </script>
 
 <style type="text/css">
-
+  .subreddit{
+    flex: 0 0 33%;
+    min-width: 400px;
+    padding: 20px 42px;
+  }
+  .subreddit h2{
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .subreddit .item-list{
+    border-top: 1px solid #bec9d0;
+    padding-top: 20px;
+    list-style: none;
+  }
+  .subreddit .item-list li{
+    margin-bottom: 17px;
+  }
+  @media(max-width: 500px){
+    .subreddit{
+      min-width: 300px;
+      padding: 20px 15px;
+    }
+  }
 </style>

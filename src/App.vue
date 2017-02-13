@@ -37,27 +37,42 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-
 img {
   width: 200px;
   height: 200px;
 }
-
 h1, h2 {
   font-weight: normal;
 }
-
 ul {
   list-style-type: none;
   padding: 0;
 }
-
 li {
   display: inline-block;
   margin: 0 10px;
 }
-
 a {
   color: #42b983;
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: underline;
+}
+.container{
+  padding: 27px 20px;
+  margin: 30px auto 50px;
+  max-width: 1250px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  background-color: #fff;
+  box-shadow: 0 0 1px #ccc;
+}
+@media(max-width: 1250px){
+  .container{
+    justify-content: center;
+    margin: 30px 30px 50px 30px;
+  }
 }
 </style>

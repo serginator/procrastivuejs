@@ -7,11 +7,11 @@
         {{ item.data.title | truncate}}
       </a>
       <div class="action-buttons">
-        <a :href="getUrl()" title="Vote">
+        <a :href="'http://reddit.com' + item.data.permalink " title="Vote">
           <i class="material-icons">thumbs_up_down</i>
           {{item.data.score}}
         </a>
-        <a :href="getUrl()" title="Go to discussion">
+        <a :href="'http://reddit.com' + item.data.permalink " title="Go to discussion">
           <i class="material-icons">forum</i>
           {{item.data.num_comments}}
         </a>
@@ -30,16 +30,51 @@ export default {
         return 'background-image: url(' + img + ')';
       }
       else {
-        return 'background-image: url(assets/img/placeholder.png)';
+        return 'background-image: url(src/img/placeholder.png)';
       }
-    },
-    getUrl: function() {
-      return `http://reddit.com${this.data.permalink}`;
     }
-  }
+  }/*,
+  filters: {
+    truncate: truncate
+  }*/
 };
 </script>
 
 <style>
-
+  .post{
+    display: flex;
+  }
+  .post .thumbnail{
+    display: block;
+    flex: 0 0 60px;
+    height: 60px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin-right: 10px;
+    border-radius: 4px;
+    margin-right: 12px;
+  }
+  .post .details{
+    display: flex;
+    flex-direction: column;
+  }
+  .post .details .title{
+    font-size: 15px;
+    margin-bottom: 3px;
+    color: #04477b;
+  }
+  .post .details .title:visited{
+    color: purple;
+  }
+  .post .details .action-buttons a{
+    font-size: 11px;
+    margin-right: 4px;
+    display: inline-block;
+    color: #666;
+  }
+  .post .details .action-buttons i{
+    font-size: 10px;
+    margin-right: 1px;
+  }
 </style>
