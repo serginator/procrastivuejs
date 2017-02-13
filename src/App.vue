@@ -12,12 +12,17 @@
       <h1>HackerNews</h1>
       <hackernews></hackernews>
     </div>
+    <div class="container">
+        <h1>Slashdot</h1>
+        <slashdot></slashdot>
+    </div>
   </div>
 </template>
 
 <script>
 import Subreddit from './Subreddit.vue';
 import HackerNews from './HackerNews.vue';
+import Slashdot from './Slashdot.vue';
 export default {
   name: 'app',
   data () {
@@ -27,7 +32,8 @@ export default {
   },
   components: {
     subreddit: Subreddit,
-    hackernews: HackerNews
+    hackernews: HackerNews,
+    slashdot: Slashdot
   }
 }
 </script>

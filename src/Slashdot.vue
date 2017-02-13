@@ -1,5 +1,5 @@
 <template>
-    <div class="subreddit">
+    <div class="slashdot">
         <h2>{{ name | uppercase }}</h2>
         <ul class="item-list">
             <li v-for="obj in posts">
@@ -12,7 +12,7 @@
 <script type="text/javascript">
 import Post from './Post.vue';
 export default {
-  name: 'subreddit',
+  name: 'slashdot',
   props: ['name'],
   data: function() {
     return {
@@ -21,22 +21,21 @@ export default {
   },
   created: function() {
     var that = this;
-    fetch('https://www.reddit.com/r/' + this.name + '/top.json?limit=5')
+    fetch('http://slashdot-api.herokuapp.com/slashdot_postings/search')
       .then(function(resp) {
         if (resp.status !== 200) {
           console.log('Looks like there was a problem. Status Code: ' + resp.status);
           return;
         }
         resp.json().then(function(data) {
-          var dataAux = data.data.children;
           that.posts = [];
-          for (var i = 0, n = dataAux.length; i < n; i++) {
+          for (var i = 0, n = 10; i < n; i++) {
             that.posts.push({
-              title: dataAux[i].data.title,
-              score: dataAux[i].data.score,
-              num_comments: dataAux[i].data.num_comments,
-              url: 'http://reddit.com' + dataAux[i].data.permalink,
-              thumbnail: dataAux[i].data.thumbnail
+              title: data[i].title,
+              score: data[i].score,
+              num_comments: data[i].comment_count,
+              url: data[i].permalink,
+              thumbnail: null
             });
           }
         });

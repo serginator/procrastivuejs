@@ -32,7 +32,6 @@ export default {
               fetch(`https://hacker-news.firebaseio.com/v0/item/${data[i]}.json?print=pretty`)
                 .then(function(r) {
                     r.json().then(function(rdata) {
-                        console.log(rdata);
                         that.posts.push({
                             title: rdata.title,
                             score: rdata.score,
