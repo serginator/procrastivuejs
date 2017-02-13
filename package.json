@@ -7,7 +7,8 @@
     "watchify": "watchify -vd -p browserify-hmr -e src/main.js -o dist/build.js",
     "serve": "http-server -o -s -c 1 -a localhost",
     "dev": "npm-run-all --parallel watchify serve",
-    "build": "cross-env NODE_ENV=production browserify -g envify src/main.js | uglifyjs -c warnings=false -m > dist/build.js"
+    "build": "cross-env NODE_ENV=production browserify -g envify src/main.js | uglifyjs -c warnings=false -m > dist/build.js",
+    "pages": "npm run build && cp index.html dist/index.html && sed -i 's/dist\\/build\\.js/build\\.js/g' dist/index.html && mkdir -p dist/src/img && cp src/img/placeholder.png dist/src/img/placeholder.png && gh-pages -d dist -m 'Pushed gh-pages'"
   },
   "dependencies": {
     "vue": "^2.0.1",
@@ -21,6 +22,7 @@
     "browserify-hmr": "^0.3.1",
     "cross-env": "^1.0.6",
     "envify": "^3.4.1",
+    "gh-pages": "^0.12.0",
     "http-server": "^0.9.0",
     "npm-run-all": "^2.1.2",
     "uglify-js": "^2.5.0",
