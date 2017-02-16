@@ -1,6 +1,6 @@
 <template>
     <div class="slashdot">
-        <h2>Medium (TOP 3)</h2>
+        <a href="https://medium.com/browse/726a53df8c8b"><h2>Medium (TOP 3)</h2></a>
         <ul class="item-list">
             <li v-for="obj in posts">
                 <post :item="obj"></post>

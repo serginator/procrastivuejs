@@ -1,6 +1,6 @@
 <template>
     <div class="subreddit">
-        <h2>{{ name | uppercase }}</h2>
+        <a :href="'https://www.reddit.com/r/' + name"><h2>{{ name | uppercase }}</h2></a>
         <ul class="item-list">
             <li v-for="obj in posts">
                 <post :item="obj"></post>

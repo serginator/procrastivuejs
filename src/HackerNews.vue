@@ -1,6 +1,6 @@
 <template>
     <div class="hackernews">
-        <h2>Hacker News (TOP 10)</h2>
+        <a href="https://news.ycombinator.com/news"><h2>Hacker News (TOP 10)</h2></a>
         <ul class="item-list">
             <li v-for="obj in posts">
                 <post :item="obj"></post>
