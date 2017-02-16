@@ -6,7 +6,8 @@
       <h1>Reddit</h1>
       <subreddit name="aww"></subreddit>
       <subreddit name="javascript"></subreddit>
-      <subreddit name="food"></subreddit>
+      <subreddit name="node"></subreddit>
+      <subreddit name="frontend"></subreddit>
     </div>
     <div class="container">
       <h1>HackerNews</h1>
