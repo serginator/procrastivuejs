@@ -1,6 +1,6 @@
 <template>
     <div class="slashdot">
-        <h2>{{ name | uppercase }}</h2>
+        <h2>Slashdot (TOP 10)</h2>
         <ul class="item-list">
             <li v-for="obj in posts">
                 <post :item="obj"></post>
@@ -21,25 +21,36 @@ export default {
   },
   created: function() {
     var that = this;
-    fetch('http://slashdot-api.herokuapp.com/slashdot_postings/search')
-      .then(function(resp) {
-        if (resp.status !== 200) {
-          console.log('Looks like there was a problem. Status Code: ' + resp.status);
-          return;
+    var query = {
+      url: 'https://slashdot.org/popular',
+      type: 'html',
+      selector: '.story-title a',
+      extract: ['text', 'href']
+    },
+    uriQuery = encodeURIComponent(JSON.stringify(query)),
+    request  = 'https://noodle-heroku.herokuapp.com/?q=' +
+               uriQuery;
+
+    fetch(request).then(function(resp) {
+      if (resp.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' + resp.status);
+        return;
+      }
+      resp.json().then(function(_data) {
+        var data = _data[0].results,
+            i, n;
+        that.posts = [];
+        for (i = 0, n = 10; i < n; i++) {
+          that.posts.push({
+            title: data[i].text,
+            score: null,
+            num_comments: null,
+            url: 'http:' + data[i].href,
+            thumbnail: null
+          });
         }
-        resp.json().then(function(data) {
-          that.posts = [];
-          for (var i = 0, n = 10; i < n; i++) {
-            that.posts.push({
-              title: data[i].title,
-              score: data[i].score,
-              num_comments: data[i].comment_count,
-              url: data[i].permalink,
-              thumbnail: null
-            });
-          }
-        });
       });
+    });
   },
   components: {
     post: Post
@@ -48,25 +59,25 @@ export default {
 </script>
 
 <style type="text/css">
-  .subreddit{
+  .slashdot{
     flex: 0 0 33%;
     min-width: 400px;
     padding: 20px 42px;
   }
-  .subreddit h2{
+  .slashdot h2{
     font-size: 18px;
     margin-bottom: 10px;
   }
-  .subreddit .item-list{
+  .slashdot .item-list{
     border-top: 1px solid #bec9d0;
     padding-top: 20px;
     list-style: none;
   }
-  .subreddit .item-list li{
+  .slashdot .item-list li{
     margin-bottom: 17px;
   }
   @media(max-width: 500px){
-    .subreddit{
+    .slashdot{
       min-width: 300px;
       padding: 20px 15px;
     }

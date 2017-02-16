@@ -7,11 +7,11 @@
         {{ item.title | truncate}}
       </a>
       <div class="action-buttons">
-        <a :href="item.url" title="Vote">
+        <a :href="item.url" v-if="item.score" title="Vote">
           <i class="material-icons">thumbs_up_down</i>
           {{item.score}}
         </a>
-        <a :href="item.url" title="Go to discussion">
+        <a :href="item.url" v-if="item.num_comments" title="Go to discussion">
           <i class="material-icons">forum</i>
           {{item.num_comments}}
         </a>
