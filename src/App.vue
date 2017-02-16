@@ -21,6 +21,15 @@
         <h1>Medium</h1>
         <medium></medium>
     </div>
+    <div class="container">
+      <h1>Smashing Magazine</h1>
+      <smashingmagazine name="javascript"></smashingmagazine>
+      <smashingmagazine name="html"></smashingmagazine>
+      <smashingmagazine name="css"></smashingmagazine>
+      <smashingmagazine name="techniques"></smashingmagazine>
+      <smashingmagazine name="web-design"></smashingmagazine>
+      <smashingmagazine name="responsive"></smashingmagazine>
+    </div>
   </div>
 </template>
 
@@ -29,6 +38,7 @@ import Subreddit from './Subreddit.vue';
 import HackerNews from './HackerNews.vue';
 import Slashdot from './Slashdot.vue';
 import Medium from './Medium.vue';
+import SmashingMagazine from './SmashingMagazine.vue';
 export default {
   name: 'app',
   data () {
@@ -40,7 +50,8 @@ export default {
     subreddit: Subreddit,
     hackernews: HackerNews,
     slashdot: Slashdot,
-    medium: Medium
+    medium: Medium,
+    smashingmagazine: SmashingMagazine
   }
 }
 </script>
