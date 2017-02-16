@@ -5,7 +5,7 @@
     <div class="container">
       <h1>Reddit</h1>
       <subreddit name="aww"></subreddit>
-      <subreddit name="space"></subreddit>
+      <subreddit name="javascript"></subreddit>
       <subreddit name="food"></subreddit>
     </div>
     <div class="container">
@@ -16,6 +16,10 @@
         <h1>Slashdot</h1>
         <slashdot></slashdot>
     </div>
+    <div class="container">
+        <h1>Medium</h1>
+        <medium></medium>
+    </div>
   </div>
 </template>
 
@@ -23,6 +27,7 @@
 import Subreddit from './Subreddit.vue';
 import HackerNews from './HackerNews.vue';
 import Slashdot from './Slashdot.vue';
+import Medium from './Medium.vue';
 export default {
   name: 'app',
   data () {
@@ -33,7 +38,8 @@ export default {
   components: {
     subreddit: Subreddit,
     hackernews: HackerNews,
-    slashdot: Slashdot
+    slashdot: Slashdot,
+    medium: Medium
   }
 }
 </script>

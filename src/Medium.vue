@@ -1,6 +1,6 @@
 <template>
     <div class="slashdot">
-        <h2>Slashdot (TOP 10)</h2>
+        <h2>Medium (TOP 3)</h2>
         <ul class="item-list">
             <li v-for="obj in posts">
                 <post :item="obj"></post>
@@ -12,7 +12,7 @@
 <script type="text/javascript">
 import Post from './Post.vue';
 export default {
-  name: 'slashdot',
+  name: 'medium',
   props: ['name'],
   data: function() {
     return {
@@ -20,15 +20,23 @@ export default {
     }
   },
   created: function() {
-    var that = this;
-    var query = {
-      url: 'https://slashdot.org/popular',
-      type: 'html',
-      selector: '.story-title a',
-      extract: ['text', 'href']
-    },
-    uriQuery = encodeURIComponent(JSON.stringify(query)),
-    request = 'https://noodle-heroku.herokuapp.com/?q=' + uriQuery;
+    var that = this,
+      query = {
+        url: 'https://medium.com/browse/726a53df8c8b',
+        type: 'html',
+        map: {
+          titles: {
+            selector: '.postArticle-content h3',
+            extract: ['text']
+          },
+          urls: {
+            selector: '.postArticle-content a',
+            extract: ['href']
+          }
+        }
+      },
+      uriQuery = encodeURIComponent(JSON.stringify(query)),
+      request = 'https://noodle-heroku.herokuapp.com/?q=' + uriQuery;
 
     fetch(request).then(function(resp) {
       if (resp.status !== 200) {
@@ -38,14 +46,14 @@ export default {
       resp.json().then(function(_data) {
         var data = _data[0].results,
             i, n;
-        n = data.length > 10 ? 10 : data.length;
+        n = data.titles.length > 10 ? 10 : data.titles.length;
         that.posts = [];
         for (i = 0; i < n; i++) {
           that.posts.push({
-            title: data[i].text,
+            title: data.titles[i].text,
             score: null,
             num_comments: null,
-            url: data[i].href,
+            url: data.urls[i].href,
             thumbnail: null
           });
         }
@@ -59,25 +67,25 @@ export default {
 </script>
 
 <style type="text/css">
-  .slashdot{
+  .medium{
     flex: 0 0 33%;
     min-width: 400px;
     padding: 20px 42px;
   }
-  .slashdot h2{
+  .medium h2{
     font-size: 18px;
     margin-bottom: 10px;
   }
-  .slashdot .item-list{
+  .medium .item-list{
     border-top: 1px solid #bec9d0;
     padding-top: 20px;
     list-style: none;
   }
-  .slashdot .item-list li{
+  .medium .item-list li{
     margin-bottom: 17px;
   }
   @media(max-width: 500px){
-    .slashdot{
+    .medium{
       min-width: 300px;
       padding: 20px 15px;
     }
